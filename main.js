@@ -14,8 +14,36 @@ function calculate() {
     const operator = operatorSelect.value;
 
     let result
-    if( operator === "+") {
-        result = num1 + num2
+    // if( operator === "+") {
+    //     result = num1 + num2
+    // }
+
+    // VALIDATE THAT WE HAVE SOMETHING TO WORK WITH 
+    if (isNaN(num1) || isNaN(num2)){
+        resultSpan.innerText= "Please provide an operation and two numbers!";
+        return;
+    }
+
+    
+    // when using switch we use break after every operator or else they'll always overwrite each other
+    switch(operator){
+        case "+": result = num1 + num2;
+        break;
+        case "-": result = num1 - num2;
+        break;
+        case "*": result = num1 * num2;
+        break;
+        case "/": 
+            if (num2 === 0) {
+                calculateButton.textContent = "ERROR: CAN'T DEVIDE BY ZERO";
+                resultSpan.innerText = "Undefined"
+                return;
+            }
+
+            else{
+                result = num1 / num2
+            }
+        break;
     }
     
     // Step 3 - update the result span with the result of the calculation
